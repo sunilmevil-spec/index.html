@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseFit Gym | Strength • Conditioning • Transformation</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #030712;
+      --bg-alt: #020617;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.16);
+      --accent-strong: rgba(34, 197, 94, 0.55);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card: #020617;
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, #020617, #000 70%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header / Nav */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.97),
+        rgba(15, 23, 42, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #bbf7d0, #16a34a 60%, #052e16 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      color: #022c22;
+      box-shadow: 0 0 28px rgba(34, 197, 94, 0.95);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .logo-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #22c55e, #a855f7);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.4rem 1.25rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+      font-weight: 500;
+      background: none;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #22c55e, #16a34a);
+      color: #022c22;
+      box-shadow: 0 18px 40px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 55px rgba(34, 197, 94, 0.6);
+    }
+
+    .btn-ghost {
+      border-color: rgba(75, 85, 99, 0.9);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.16), rgba(15, 23, 42, 0.98));
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 2.6rem;
+      align-items: center;
+      padding-top: 4.1rem;
+      padding-bottom: 1.8rem;
+    }
+
+    .tagline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.18rem 0.75rem 0.18rem 0.32rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.95);
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.25), transparent);
+      margin-bottom: 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .pill-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #bbf7d0, #22c55e 55%, #052e16 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #052e16;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #22c55e, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 1.9rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .meta-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #bbf7d0, #22c55e);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.85);
+    }
+
+    /* Hero visual */
+
+    .hero-visual {
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-card {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      border-radius: 26px;
+      padding: 1px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.5), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.4), transparent 55%);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-inner {
+      border-radius: inherit;
+      background: radial-gradient(circle at top, #020617, #030712 50%, #020617 100%);
+      border: 1px solid rgba(55, 65, 81, 0.85);
+      padding: 1.3rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      position: relative;
+    }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stat-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .stat-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .progress {
+      margin-top: 0.3rem;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.95);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 78%;
+      background: linear-gradient(to right, #22c55e, #16a34a);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-box {
+      padding: 0.55rem 0.6rem;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .floating-chip {
+      position: absolute;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.95);
+    }
+
+    .floating-chip.top-right {
+      top: 10%;
+      right: -8px;
+    }
+
+    .floating-chip.bottom-left {
+      bottom: 10%;
+      left: -6px;
+    }
+
+    .chip-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #fed7aa, #f97316);
+      box-shadow: 0 0 14px rgba(248, 113, 22, 0.95);
+    }
+
+    /* Generic grid / card */
+
+    .grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      padding: 1.3rem 1.25rem;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), #020617);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.12rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.95);
+      font-size: 0.72rem;
+    }
+
+    /* Classes / timetable */
+
+    .class-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.85rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed rgba(55, 65, 81, 0.8);
+    }
+
+    .class-row:last-child {
+      border-bottom: none;
+    }
+
+    .class-name {
+      font-weight: 500;
+    }
+
+    .class-time {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* Pricing */
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .price span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .feature-list {
+      margin-top: 0.7rem;
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      margin-right: 0.4rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    /* Contact */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 1.8rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(3, 7, 18, 0.96);
+      color: var(--text);
+      font-size: 0.84rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.35);
+      background: #020617;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 2.5rem;
+      padding: 1.6rem 1.25rem 2.1rem;
+      border-top: 1px solid rgba(15, 118, 110, 0.9);
+      background: radial-gradient(circle at bottom, #020617, #000);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section {
+        padding-inline: 1.1rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-badge">PF</div>
+          <div class="logo-text">
+            <!-- Change your gym name here -->
+            <div class="logo-title">PULSEFIT</div>
+            <div class="logo-sub">Strength • Conditioning • Hypertrophy</div>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <button
+          class="btn btn-primary nav-cta"
+          onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"
+        >
+          Join now
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="section hero" id="home">
+        <div>
+          <div class="tagline-pill">
+            <div class="pill-dot">🏋️‍♂️</div>
+            <span><strong>New Member Offer</strong> • 1st session free</span>
+          </div>
+
+          <!-- Change headline and text for your gym -->
+          <h1 class="hero-title">
+            Build<br />
+            <span>Real Strength</span>, not excuses.
+          </h1>
+          <p class="hero-subtitle">
+            PulseFit is a strength-focused gym helping you get stronger, leaner and more athletic with
+            science-based weight training programs and personal coaching.
+          </p>
+
+          <div class="hero-actions">
+            <button
+              class="btn btn-primary"
+              onclick="document.querySelector('#pricing').scrollIntoView({behavior:'smooth'})"
+            >
+              View membership plans →
+            </button>
+            <button
+              class="btn btn-ghost"
+              onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"
+            >
+              Book a free trial
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-dot"></span> Open 6 AM – 10 PM, Mon–Sat
+            </div>
+            <div class="meta-item">💪 1-1 coaching & customized plans</div>
+            <div class="meta-item">📍 Your City, Your Area</div>
+          </div>
+        </div>
+
+        <!-- Right side: transformation stats card -->
+        <div class="hero-visual">
+          <div class="stat-card">
+            <div class="stat-inner">
+              <div class="stat-header">
+                <div>
+                  <div class="stat-title">Member Transformation</div>
+                  <div class="stat-sub">12-week strength & fat loss</div>
+                </div>
+                <div class="badge">Coach-led</div>
+              </div>
+
+              <div>
+                <div class="stat-sub">Progress towards goal</div>
+                <div class="progress"><span></span></div>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <div class="stat-label">Squat</div>
+                  <div class="stat-value">+45 kg</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-label">Deadlift</div>
+                  <div class="stat-value">+60 kg</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-label">Body fat</div>
+                  <div class="stat-value">-7%</div>
+                </div>
+              </div>
+
+              <div class="stat-sub" style="margin-top:0.3rem;">
+                Data from real PulseFit members following our 3-day strength split & nutrition guidance.
+              </div>
+
+              <div class="floating-chip top-right">
+                <span class="chip-dot"></span> 250+ active members
+              </div>
+              <div class="floating-chip bottom-left">
+                🔔 Next batch starts Monday
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <h2 class="section-title">Why train at PulseFit?</h2>
+        <p class="section-subtitle">
+          We’re not a selfie gym. We’re a result-driven strength space built around proper form,
+          progressive overload and sustainable lifestyle changes.
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-label">01</div>
+            <div class="card-title">Strength-first Programming</div>
+            <p class="card-text">
+              Learn the big lifts—squat, bench, deadlift, rows, overhead press—with coaching on technique and
+              progressive overload so you actually get stronger.
+            </p>
+            <div class="card-meta">
+              <span>Barbell, dumbbell & machines</span>
+              <span class="pill">Beginner friendly</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">02</div>
+            <div class="card-title">Coach Guidance</div>
+            <p class="card-text">
+              Certified coaches on the floor to correct your form, design your program and track your progress every
+              4 weeks.
+            </p>
+            <div class="card-meta">
+              <span>Form checks every session</span>
+              <span class="pill">Personalised plans</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">03</div>
+            <div class="card-title">Supportive Environment</div>
+            <p class="card-text">
+              No ego lifting, no judgement. Just a focused, motivating atmosphere with people serious about their
+              training.
+            </p>
+            <div class="card-meta">
+              <span>Limited memberships</span>
+              <span class="pill">Zero crowding</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAMS -->
+      <section class="section" id="programs">
+        <h2 class="section-title">Training Programs</h2>
+        <p class="section-subtitle">
+          Choose how you want to train. We’ll handle the plan, coaching and progression so you can just show up and lift.
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-label">Program</div>
+            <div class="card-title">Strength Foundation</div>
+            <p class="card-text">
+              3-day full-body routine focusing on compound lifts, perfect for beginners or anyone returning after a break.
+            </p>
+            <ul class="feature-list">
+              <li>Form coaching for all main lifts</li>
+              <li>Weekly progression plan</li>
+              <li>Basic nutrition guidelines</li>
+            </ul>
+            <div class="card-meta" style="margin-top:0.6rem;">
+              <span>Ideal for 0–6 months experience</span>
+              <span class="pill">3 days / week</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Program</div>
+            <div class="card-title">Hypertrophy Split</div>
+            <p class="card-text">
+              4-day push/pull/legs split focused on muscle gain and aesthetics with structured volume & intensity.
+            </p>
+            <ul class="feature-list">
+              <li>Personalised split based on lagging parts</li>
+              <li>Progress tracking in app / logbook</li>
+              <li>Monthly body comp check-ins</li>
+            </ul>
+            <div class="card-meta" style="margin-top:0.6rem;">
+              <span>For intermediate lifters</span>
+              <span class="pill">4 days / week</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Program</div>
+            <div class="card-title">Elite Coaching</div>
+            <p class="card-text">
+              1-1 sessions with a coach, custom training & nutrition, weekly check-ins, and full lifestyle support.
+            </p>
+            <ul class="feature-list">
+              <li>Custom plan for your schedule</li>
+              <li>WhatsApp support with coach</li>
+              <li>Strength + fat loss or bulk phases</li>
+            </ul>
+            <div class="card-meta" style="margin-top:0.6rem;">
+              <span>Limited coaching slots</span>
+              <span class="pill">By application</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMETABLE / CLASSES -->
+      <section class="section">
+        <h2 class="section-title">Daily Schedule</h2>
+        <p class="section-subtitle">
+          Open training all day + focused group sessions to keep you consistent.
+          <!-- Edit timing as per your gym -->
+        </p>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-label">Weekdays</div>
+            <div class="card-title">Monday – Friday</div>
+            <div class="class-row">
+              <span class="class-name">Morning Strength Club</span>
+              <span class="class-time">6:00 AM – 8:00 AM</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Open Gym</span>
+              <span class="class-time">8:00 AM – 4:00 PM</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Hypertrophy Group</span>
+              <span class="class-time">5:00 PM – 7:00 PM</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Powerlifting Session</span>
+              <span class="class-time">7:00 PM – 9:00 PM</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Weekend</div>
+            <div class="card-title">Saturday – Sunday</div>
+            <div class="class-row">
+              <span class="class-name">Technique & Form Clinic</span>
+              <span class="class-time">7:00 AM – 9:00 AM</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Open Gym</span>
+              <span class="class-time">9:00 AM – 1:00 PM</span>
+            </div>
+            <div class="class-row">
+              <span class="class-name">Mobility & Recovery</span>
+              <span class="class-time">4:00 PM – 6:00 PM</span>
+            </div>
+            <div class="card-meta" style="margin-top:0.7rem;">
+              <span>Sunday evenings reserved for deep cleaning</span>
+              <span class="pill">Clean & hygienic space</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section" id="pricing">
+        <h2 class="section-title">Membership Plans</h2>
+        <p class="section-subtitle">
+          Simple plans with everything you need to train hard and stay consistent.
+          <!-- Change ₹ to your currency / pricing -->
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-label">Plan</div>
+            <div class="card-title">Basic Access</div>
+            <div class="price">₹1,999 <span>/ month</span></div>
+            <ul class="feature-list">
+              <li>Unlimited gym access</li>
+              <li>General floor support</li>
+              <li>Access to group sessions</li>
+            </ul>
+            <button
+              class="btn btn-ghost"
+              style="margin-top:0.9rem;width:100%;justify-content:center;"
+              onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"
+            >
+              Get started
+            </button>
+          </div>
+
+          <div class="card" style="border-color:var(--accent-strong);box-shadow:0 18px 50px rgba(34,197,94,0.45);">
+            <div class="card-label">Most Popular</div>
+            <div class="card-title">Coached Plan</div>
+            <div class="price">₹3,499 <span>/ month</span></div>
+            <ul class="feature-list">
+              <li>All Basic benefits</li>
+              <li>Custom training plan</li>
+              <li>Progress check-in every 4 weeks</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              style="margin-top:0.9rem;width:100%;justify-content:center;"
+              onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"
+            >
+              Join coached plan
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Plan</div>
+            <div class="card-title">1-1 Personal Training</div>
+            <div class="price">₹899 <span>/ session</span></div>
+            <ul class="feature-list">
+              <li>Dedicated coach for 60 mins</li>
+              <li>Technique breakdown & cues</li>
+              <li>Nutrition & recovery guidance</li>
+            </ul>
+            <button
+              class="btn btn-ghost"
+              style="margin-top:0.9rem;width:100%;justify-content:center;"
+              onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"
+            >
+              Book a session
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <h2 class="section-title">Book Your Free Trial</h2>
+        <p class="section-subtitle">
+          Fill the form and our team will contact you with available slots and membership details.
+        </p>
+
+        <div class="contact-layout">
+          <div class="card">
+            <div class="card-label">Location</div>
+            <div class="card-title">Visit the gym</div>
+            <!-- Change this to your real address -->
+            <p class="card-text">
+              PulseFit Gym<br />
+              2nd Floor, Main Street<br />
+              Your Area, Your City – 560001
+            </p>
+            <div class="card-meta">
+              <span>📞 +91-98765-43210</span>
+              <span>📧 hello@pulsefitgym.com</span>
+            </div>
+            <div class="card-meta" style="margin-top:0.7rem;">
+              <span>Parking available • Water & locker facility</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <!-- This form won’t submit anywhere until you add backend / Google Form -->
+            <form onsubmit="event.preventDefault(); alert('Thanks! We will contact you soon.');">
+              <div>
+                <label for="name">Full Name</label>
+                <input id="name" name="name" placeholder="Enter your name" required />
+              </div>
+              <div>
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" placeholder="+91-" required />
+              </div>
+              <div>
+                <label for="goal">Primary Goal</label>
+                <select id="goal" name="goal">
+                  <option value="strength">Build strength</option>
+                  <option value="fatloss">Fat loss & toning</option>
+                  <option value="muscle">Build muscle size</option>
+                  <option value="sport">Sports performance</option>
+                  <option value="general">General fitness</option>
+                </select>
+              </div>
+              <div>
+                <label for="message">Anything we should know?</label>
+                <textarea id="message" name="message" placeholder="Current experience, injuries, preferred timings..."></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top:0.4rem;justify-content:center;width:100%;"
+              >
+                Submit & request callback
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span>PulseFit Gym</span> — Replace this text with your gym name. Train smart. Train strong.
+    </footer>
+  </div>
+</body>
+</html>
